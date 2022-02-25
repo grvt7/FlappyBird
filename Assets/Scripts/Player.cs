@@ -38,12 +38,16 @@ public class Player : MonoBehaviour {
             direction = Vector3.up * strength;
             Debug.Log("SpaceBar");
         }
+        // Used to get the rotation of the bird
         Quaternion rot = transform.rotation;
+        // If direction is increasing
         if (direction.y > 0) {
+            // Rotate the Nose Down
             rot.z = direction.y * 0.02f;
             transform.rotation = rot;
         }
         else {
+            // Rotate the nose back up
             rot.z = direction.y * 0.02f;
             transform.rotation = rot;
         }
