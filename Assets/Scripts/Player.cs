@@ -48,11 +48,25 @@ public class Player : MonoBehaviour {
         transform.position += direction * Time.deltaTime;
     }
 
+// Used to make falling animation on wings
     private void AnimateSprite() {
+        // Increse the sprite index
         spriteIndex++;
+        // Reset sprite index if it is equal or over the length of sprite array
         if(spriteIndex >= sprites.Length) {
             spriteIndex = 0;
         }
+        // Render the Sprite on Screen using SpriteRenderer
         spriteRenderer.sprite = sprites[spriteIndex];
+    }
+
+// To detect colliosions with other objects
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Obstacle") {
+            FindObjectOfType<GameManager>().GameOver();
+        }
+        else if (other.gameObject.tag == "Scoring"){
+            FindObjectOfType<GameManager>().IncreseScore();
+        }
     }
 }

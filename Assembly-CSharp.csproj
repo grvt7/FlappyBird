@@ -40,6 +40,7 @@
      <Compile Include="Assets\Scripts\Parallax.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\Pipes.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.29f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
