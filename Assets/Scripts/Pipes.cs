@@ -13,8 +13,9 @@ public class Pipes : MonoBehaviour {
         leftEdge = Camera.main.ScreenToWorldPoint(Vector3.zero).x - 1f;
     }
     private void Update() {
+        // Moves the pipe on the screen the the left
         transform.position += Vector3.left * speed * Time.deltaTime;
-        
+        // Destroys the pipe when the pipe exits the screen
         if(transform.position.x < leftEdge){
             Destroy(gameObject);
         }

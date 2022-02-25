@@ -22,10 +22,30 @@ public class Player : MonoBehaviour {
 
     }
 
+    private void OnEnable() {
+        // Gets the current position
+        Vector3 position = transform.position;
+        // Sets the y for the current position
+        position.y = 0f;
+        // Sets the position to the local position refrence
+        transform.position = position;
+        // Sets direction to zero
+        direction = Vector3.zero;
+    }
+
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
             direction = Vector3.up * strength;
             Debug.Log("SpaceBar");
+        }
+        Quaternion rot = transform.rotation;
+        if (direction.y > 0) {
+            rot.z = direction.y * 0.02f;
+            transform.rotation = rot;
+        }
+        else {
+            rot.z = direction.y * 0.02f;
+            transform.rotation = rot;
         }
         // Bsic way to get touch input. I am not using it here
         // //For mobile. Check number of fingers touching the screen.
@@ -62,9 +82,11 @@ public class Player : MonoBehaviour {
 
 // To detect colliosions with other objects
     private void OnTriggerEnter2D(Collider2D other) {
+        // If collision type is Obstacle. Calls the GameOver Function inside GameManager
         if(other.gameObject.tag == "Obstacle") {
             FindObjectOfType<GameManager>().GameOver();
         }
+        // If collision type is Scoring. Calls the Scoring Function inside GameManager
         else if (other.gameObject.tag == "Scoring"){
             FindObjectOfType<GameManager>().IncreseScore();
         }
